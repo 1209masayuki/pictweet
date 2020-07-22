@@ -7,6 +7,9 @@ describe User, type: :model do
       expect(user.errors.full_messages).to include("Nickname can't be blank")
     end
     it "emailが空だと登録できない" do
+      user = User.new(nickname: "abe", email: "", password: "00000000", password_confirmation: "00000000")
+      user.valid?
+      expect(user.errors.full_messages).to include("Email can't be blank")
     end
   end
 end
